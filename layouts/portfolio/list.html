@@ -1,0 +1,42 @@
+{{ define "main" }}
+<div class="portfolio-grid">
+    {{ range .Pages }}
+    <div class="portfolio-item">
+        {{ with .Params.cover }}
+        <img src="{{ . }}" alt="{{ $.Title }} cover" class="portfolio-cover" />
+        {{ end }}
+        <h2>{{ .Title }}</h2>
+        <p>{{ .Params.description }}</p>
+        {{ with .Params.links }}
+        <ul>
+            {{ range . }}
+            <li><a href="{{ . }}" target="_blank">Link</a></li>
+            {{ end }}
+        </ul>
+        {{ end }}
+    </div>
+    {{ end }}
+</div>
+<style>
+    .portfolio-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+
+    .portfolio-item {
+        background: #222;
+        padding: 1rem;
+        border-radius: 8px;
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .portfolio-cover {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+</style>
+{{ end }}
